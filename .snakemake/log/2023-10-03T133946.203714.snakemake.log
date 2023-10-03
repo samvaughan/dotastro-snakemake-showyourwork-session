@@ -1,0 +1,80 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                       count    min threads    max threads
+----------------------  -------  -------------  -------------
+bake                          1              1              1
+beat_eggs                     1              1              1
+cream_butter_and_sugar        1              1              1
+mix_together                  1              1              1
+weigh_and_sift_flour          1              1              1
+total                         5              1              1
+
+Select jobs to execute...
+
+[Tue Oct  3 13:39:46 2023]
+rule weigh_and_sift_flour:
+    input: resources/bag_of_flour.ingredient
+    output: results/flour.prepared
+    jobid: 3
+    reason: Missing output files: results/flour.prepared
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 13:39:46 2023]
+Finished job 3.
+1 of 5 steps (20%) done
+Select jobs to execute...
+
+[Tue Oct  3 13:39:46 2023]
+rule cream_butter_and_sugar:
+    input: resources/bag_of_sugar.ingredient, resources/block_of_butter.ingredient
+    output: results/sugar.prepared
+    jobid: 4
+    reason: Missing output files: results/sugar.prepared
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 13:39:46 2023]
+Finished job 4.
+2 of 5 steps (40%) done
+Select jobs to execute...
+
+[Tue Oct  3 13:39:46 2023]
+rule beat_eggs:
+    input: resources/eggs.ingredient
+    output: results/eggs.prepared
+    jobid: 2
+    reason: Missing output files: results/eggs.prepared
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 13:39:46 2023]
+Finished job 2.
+3 of 5 steps (60%) done
+Select jobs to execute...
+
+[Tue Oct  3 13:39:46 2023]
+rule mix_together:
+    input: results/eggs.prepared, results/flour.prepared, results/sugar.prepared, resources/vanilla_essence.ingredient
+    output: results/cake.batter
+    jobid: 1
+    reason: Missing output files: results/cake.batter; Input files updated by another job: results/flour.prepared, results/sugar.prepared, results/eggs.prepared
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 13:39:46 2023]
+Finished job 1.
+4 of 5 steps (80%) done
+Select jobs to execute...
+
+[Tue Oct  3 13:39:46 2023]
+rule bake:
+    input: results/cake.batter
+    output: results/cake.done
+    jobid: 0
+    reason: Missing output files: results/cake.done; Input files updated by another job: results/cake.batter
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 13:39:46 2023]
+Finished job 0.
+5 of 5 steps (100%) done
+Complete log: .snakemake/log/2023-10-03T133946.203714.snakemake.log

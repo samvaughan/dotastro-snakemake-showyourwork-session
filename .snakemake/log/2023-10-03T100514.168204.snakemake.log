@@ -1,0 +1,24 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job          count    min threads    max threads
+---------  -------  -------------  -------------
+beat_eggs        1              1              1
+total            1              1              1
+
+Select jobs to execute...
+
+[Tue Oct  3 10:05:14 2023]
+rule beat_eggs:
+    input: resources/eggs.ingredient
+    output: results/eggs.prepared
+    jobid: 0
+    reason: Missing output files: results/eggs.prepared
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 10:05:14 2023]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2023-10-03T100514.168204.snakemake.log

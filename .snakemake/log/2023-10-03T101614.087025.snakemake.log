@@ -1,0 +1,6 @@
+Building DAG of jobs...
+MissingInputException in rule weigh_and_sift_flour in file /Users/samvaughan/Science/Misc/dotAstro12/Snakemake_intro/workflow/Snakefile, line 6:
+Missing input files for rule weigh_and_sift_flour:
+    output: results/flour.prepared
+    affected files:
+        resourcs/bag_of_flour.ingredient

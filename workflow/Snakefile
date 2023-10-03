@@ -1,0 +1,77 @@
+import pandas as pd
+
+
+number_of_stirs = 100
+time_in_oven = 30
+temperature = 180
+
+
+rule all:
+    input:
+        "results/cake.done",
+
+
+rule weigh_and_sift_flour:
+    input:
+        flour="resources/bag_of_flour.ingredient",
+    output:
+        prepared_flour="results/flour.prepared",
+    shell:
+        """
+        echo "Sifting and weighing the flour!"
+        touch {output.prepared_flour}
+        """
+
+
+rule cream_butter_and_sugar:
+    input:
+        sugar="resources/bag_of_sugar.ingredient",
+        butter="resources/block_of_butter.ingredient",
+    output:
+        creamed_butter_sugar="results/sugar.prepared",
+    shell:
+        """
+        echo "Preparing the butter and sugar!"
+        touch {output.creamed_butter_sugar}
+        """
+
+
+rule beat_eggs:
+    input:
+        eggs="resources/eggs.ingredient",
+    output:
+        beaten_eggs="results/eggs.prepared",
+    shell:
+        """
+        echo "Beating the eggs"
+        touch {output.beaten_eggs}
+        """
+
+
+rule mix_together:
+    input:
+        eggs=rules.beat_eggs.output.beaten_eggs,
+        flour=rules.weigh_and_sift_flour.output.prepared_flour,
+        sugar=rules.cream_butter_and_sugar.output.creamed_butter_sugar,
+        vanilla_essence="resources/vanilla_essence.ingredient",
+    output:
+        cake_batter="results/cake.batter",
+    params:
+        number_of_stirs=number_of_stirs,
+    script:
+        "scripts/mix_batter.py"
+
+
+rule bake:
+    input:
+        rules.mix_together.output.cake_batter,
+    output:
+        "results/{cake_type}_cake.done",
+    params:
+        time_in_oven=time_in_oven,
+        temperature=temperature,
+    shell:
+        """
+        echo "Baking in the oven at {params.temperature} degrees C for {params.time_in_oven} minutes."
+        touch {output}
+        """

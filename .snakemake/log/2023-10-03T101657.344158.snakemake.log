@@ -1,0 +1,6 @@
+Building DAG of jobs...
+MissingInputException in rule weigh_sugar in file /Users/samvaughan/Science/Misc/dotAstro12/Snakemake_intro/workflow/Snakefile, line 18:
+Missing input files for rule weigh_sugar:
+    output: results/sugar.prepared
+    affected files:
+        resourcs/bag_of_sugar.ingredient

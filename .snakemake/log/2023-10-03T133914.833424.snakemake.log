@@ -1,0 +1,52 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                       count    min threads    max threads
+----------------------  -------  -------------  -------------
+bake                          1              1              1
+cream_butter_and_sugar        1              1              1
+mix_together                  1              1              1
+total                         3              1              1
+
+Select jobs to execute...
+
+[Tue Oct  3 13:39:15 2023]
+rule cream_butter_and_sugar:
+    input: resources/bag_of_sugar.ingredient, resources/block_of_butter.ingredient
+    output: results/sugar.prepared
+    jobid: 4
+    reason: Updated input files: resources/block_of_butter.ingredient
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 13:39:15 2023]
+Finished job 4.
+1 of 3 steps (33%) done
+Select jobs to execute...
+
+[Tue Oct  3 13:39:15 2023]
+rule mix_together:
+    input: results/eggs.prepared, results/flour.prepared, results/sugar.prepared, resources/vanilla_essence.ingredient
+    output: results/cake.batter
+    jobid: 1
+    reason: Input files updated by another job: results/sugar.prepared
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 13:39:15 2023]
+Finished job 1.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Tue Oct  3 13:39:15 2023]
+rule bake:
+    input: results/cake.batter
+    output: results/cake.done
+    jobid: 0
+    reason: Input files updated by another job: results/cake.batter
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 13:39:15 2023]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: .snakemake/log/2023-10-03T133914.833424.snakemake.log

@@ -1,0 +1,11 @@
+
+rule weigh_flour:
+    input:
+        flour="resources/bag_of_flour.ingredient",
+    output:
+        weighed_flour="results/flour.prepared",
+    shell:
+        """
+        echo "Weighing the flour!"
+        touch {output.weighed_flour}
+        """

@@ -1,0 +1,24 @@
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count    min threads    max threads
+-----  -------  -------------  -------------
+bake         1              1              1
+total        1              1              1
+
+Select jobs to execute...
+
+[Tue Oct  3 10:18:14 2023]
+rule bake:
+    input: results/cake.batter
+    output: results/cake.done
+    jobid: 0
+    reason: Missing output files: results/cake.done
+    resources: tmpdir=/var/folders/5r/wxyz8ntn6ks8g2wwjv0qrszc0000gq/T
+
+[Tue Oct  3 10:18:14 2023]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2023-10-03T101814.282747.snakemake.log

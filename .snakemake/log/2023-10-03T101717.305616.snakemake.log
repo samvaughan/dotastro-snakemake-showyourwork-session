@@ -1,0 +1,6 @@
+Building DAG of jobs...
+MissingInputException in rule mix_together in file /Users/samvaughan/Science/Misc/dotAstro12/Snakemake_intro/workflow/Snakefile, line 42:
+Missing input files for rule mix_together:
+    output: results/cake.batter
+    affected files:
+        resources/vanilla_essence.ingredient
